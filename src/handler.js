@@ -3,7 +3,7 @@ const books = require('./books');
 
 /*  MENAMPILKAN BUKU */
 
-const AddBookHandler = (request, h) => {
+const addBookHandler = (request, h) => {
     const {
         name, year, author, summary, publisher, pageCount, readPage, reading
     } = request.payload;
