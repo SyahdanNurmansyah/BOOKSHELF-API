@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Relaway, sans-serif;
+    /* margin-inline: auto; */
+    /* max-width: 720px; */
+    padding: 0;
+    box-sizing: border-box;
+
+    background-color: #eeeeee;
+}
+
+header {
+    background-color: blue;
+    padding: 16px;
+    color: rgb(216, 216, 216);
+}
+
+/* #incompleteBookList {
+    color: #0400ff;
+} */
+
+#bookItemTitle {
+    color: #4e4ed6;
+    background-color: #9e1f94;
+}
+/* #bookForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    border-radius: 10px;
+    /* padding: 5px 10px 5px 10px; */
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+.shadow {
+    box-shadow: 0 5px 10px rgba(66, 66, 66, 0.493), 0 15px 40px rgba(166, 173, 201, .2);
+}
+
+.item > .inner {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* margin: 1rem; */
+
+    /* margin-bottom: 1rem; */
+    /* margin-right: 5rem; */
+    /* width: 50%; */
+}
+
+.item > .inner p {
+    margin-top: unset;
+    margin-bottom: unset;
+    font-size: 12px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    margin: 1rem;
+}
+
+.book-button-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* color: blueviolet; */
+    /* background-color: blueviolet; */
+}
+
+.card-container {
+    /* border: 3px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.completed-icon {
+    background: url('/assets/bx-check-double.svg');
+
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    cursor: pointer;
+
+    border: 1px solid #0400ff;
+    border-radius: 2px;
+
+    /* background-color: red; */
+}
+
+/* button {
+    border: 1px solid red;
+} */
+
+
+.undo-icon {
+    background: url('/assets/bx-book-reader.svg');
+
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    cursor: pointer;
+
+    border: 1px solid #9e1f94;
+    border-radius: 2px;
+}
+
+.edit-icon {
+    background: url('/assets/bx-edit-alt.svg');
+
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    cursor: pointer;
+
+    border: 1px solid green;
+    border-radius: 2px;
+
+}
+
+.bookItemIsCompleteButton {
+    color: red;
+}
+
+.trash-icon {
+    background: url('/assets/bx-trash.svg');
+
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    cursor: pointer;
+
+    border: 1px solid red;
+    border-radius: 2px;
+}
