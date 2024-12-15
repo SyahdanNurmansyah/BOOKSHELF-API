@@ -183,6 +183,7 @@ form {
 .text-container {
     color: var(--textContent);
     border: 2px solid greenyellow;
+    margin: 0;
 }
 
 .text-container h3 {
@@ -228,25 +229,33 @@ form {
     border-radius: 20px;
 }
 
+
 /*  EDIT CONTAINER   */
 
-.edit-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+.edit-container button {
+    float: right;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    margin-left: 1rem;
 }
 
-.edit-container button {
-    display: inline;
-    width: 200px;
-    height: 30px;
-    background-size: cover;
-
+.bookAuthorEditForm {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-.edit-container input,
-.edit-container button {
-    margin: 0;
+.bookYearEditForm {
+    max-width: 30%;
+}
+
+#bookItemYear {
+    width: 10px;
+}
+
+.edit-container input::placeholder {
+    color: var(--textInput);
+    opacity: 50%;
 }
 
 /*  ICON  */
@@ -264,13 +273,6 @@ form {
 
     background-color: var(--secondCo);
 }
-
-/* #bookItemIsCompleteButton {
-    display: flex;
-    background-color: #9e1f1f;
-    border: 2px solid yellowgreen;
-    padding: 2rem;
-} */
 
 .undo-icon {
     background: url('/assets/bx-book-reader.svg');

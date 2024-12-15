@@ -1,54 +1,4 @@
 const books = [];
-const RENDER_EVENT = 'render-book';
-const STORAGE_KEY = 'BOOKSHELF_APP';
-const SAVED_EVENT = 'saved-book';
-
-document.addEventListener('DOMContentLoaded', function () {
-    const submitForm = document.getElementById('bookForm');
-
-    submitForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        addBook();
-    });
-
-    const changeFooterValue = document.getElementById('footerTitle');
-    const mediaQuery = window.matchMedia('(max-width: 590px)');
-
-    function handlerMediaQueryChange(event) {
-        if (!event.matches) {
-            changeFooterValue.textContent = '© 2024, Syahdan Nurmansyah | Submission Tugas Akhir Dicoding';
-        }
-        else {
-            changeFooterValue.textContent = ('© 2024, Syahdan Nurmansyah');
-        }
-    };
-
-    handlerMediaQueryChange(mediaQuery);
-    mediaQuery.addEventListener('change', handlerMediaQueryChange);
-
-    if (isStorageExits()) {
-        localDataFromStorage();
-    }
-});
-
-document.addEventListener(RENDER_EVENT, function () {
-    
-    const incompletedBOOKList = document.getElementById('incompleteBookList');
-    incompletedBOOKList.innerHTML = '';
-
-    const completedBOOKList = document.getElementById('completeBookList');
-    completedBOOKList.innerHTML = '';
-    
-    for (const bookItem of books) {
-        const bookElement = makeBookElement(bookItem);
-
-        if (!bookItem.isComplete)
-        incompletedBOOKList.append(bookElement);
-
-        else
-        completedBOOKList.append(bookElement);
-    }
-});
 
 function generateId() {
     return new Date().getTime();
@@ -69,37 +19,6 @@ function generateBookObject(
         isComplete
     };
 };
-
-
-function localDataFromStorage() {
-    const serializeData = localStorage.getItem(STORAGE_KEY);
-    let data = JSON.parse(serializeData);
-
-    if (data !== null) {
-        for (const book of data) {
-            books.push(book);
-        }
-    }
-
-    document.dispatchEvent(new Event(RENDER_EVENT));
-}
-
-function isStorageExits() {
-    if (typeof (Storage) === undefined) {
-        alert('Browser tidak mendukung local Storage');
-        return false;
-    }
-
-    return true;
-};
-
-function saveData() {
-    if (isStorageExits()) {
-        const parsed = JSON.stringify(books);
-        localStorage.setItem(STORAGE_KEY, parsed);
-        document.dispatchEvent(new Event(SAVED_EVENT));
-    };
-}
 
 function addBook() {
     const title = document.getElementById('bookFormTitle').value;
@@ -272,12 +191,14 @@ function editBookFromCompleted(bookId) {
     // console.log('titleEditForm: ', titleEditForm.value)
 
     const authorEditForm = document.createElement('input');
+    authorEditForm.classList.add('bookAuthorEditForm')
     authorEditForm.required = true;
     authorEditForm.type = 'text';
     authorEditForm.placeholder = 'Edit Penulis';
     authorEditForm.value = bookAuthor.innerText.replace('Penulis: ', '');
 
     const yearEditForm = document.createElement('input');
+    yearEditForm.classList.add('bookYearEditForm');
     yearEditForm.required = true;
     yearEditForm.type = 'number';
     yearEditForm.placeholder = 'Edit Tahun';
@@ -314,7 +235,7 @@ function editBookFromCompleted(bookId) {
         saveButtonIcon.remove();
         cancelButtonIcon.remove();
 
-        iconButtons.forEach(button => button.style.display = 'block')
+        iconButtons.forEach(button => button.style.display = 'inline')
     });
 
     const cancelButtonIcon = document.createElement('button');
@@ -330,11 +251,13 @@ function editBookFromCompleted(bookId) {
         bookTitle.style.display = 'block';
         bookAuthor.style.display = 'block';
         bookYear.style.display = 'block';
-        iconButtons.forEach(button => button.style.display = 'block');
+
+        iconButtons.forEach(button => button.style.display = 'inline');
     });
 
     const editContainer = document.createElement('div');
     editContainer.classList.add('edit-container');
+    // editContainer.style.display = 'inline-block';
     
     editContainer.append(
         titleEditForm,
@@ -346,7 +269,7 @@ function editBookFromCompleted(bookId) {
 
 
     textContainer.append(editContainer);
-    console.log('Inputs appended and fucntion executed');
+    // console.log('Inputs appended and fucntion executed');
 }
 
 function returnBookFromCompleted(bookId) {
