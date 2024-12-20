@@ -16,9 +16,9 @@ html, body {
 }
 
 body {
-    border: 4px solid var(--primaryCo);
     padding: 1rem;
     border-radius: 20px;
+    border: 4px solid var(--primaryCo);
 }
 
 header {
@@ -106,9 +106,46 @@ form {
 
 .containerIsCompleted {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     margin-top: 0.5rem;
+}
+
+#containerCheckBox {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+
+    opacity: 0;
+    cursor: pointer;
+}
+
+input:checked[type="checkbox"] + .checkmark {
+    background-color: var(--textInput);
+    border: 1px solid var(--secondCo);
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 5px var(--secondCo);
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    margin-left: 0.5rem;
+    background-color: var(--secondCo);
 }
 
 #bookFormSubmit {
@@ -117,18 +154,28 @@ form {
 
     border-radius: 5px;
     border: none;
+    cursor: pointer;
     color: var(--textInput);
     background-color: var(--secondCo);
-    cursor: pointer;
 }
 
-#bookFormSubmit:active {
-    background-color: #1b3b2e;
+#bookFormSubmit:hover,
+#searchSubmit:hover {
+    color: var(--textContent);
+    background-color: var(--textInput);
+    box-shadow: 0 5px var(--secondCo);
+}
+
+#bookFormSubmit:active,
+#searchSubmit:active {
+    color: var(--textInput);
+    background-color: var(--textContent);
+    box-shadow: 0 0;
 }
 
 /*  SEARCH BOOK COLOMN  */
 
-.searchBook {
+.search-book {
     max-width: 50%;
     margin-inline: auto;
     margin-right: 0;
@@ -153,10 +200,6 @@ form {
     color: var(--textInput);
     background-color: var(--secondCo);
 }
-
-#searchSubmit:active {
-    background-color: #1b3b2e;
-}
  
 /*  bBOOKS LIST */
 
@@ -164,7 +207,7 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    gap: 1rem;
     margin: 1rem;
     padding: 1rem;
     border-radius: 5px;
@@ -182,7 +225,6 @@ form {
 
 .text-container {
     color: var(--textContent);
-    border: 2px solid greenyellow;
     margin: 0;
 }
 
@@ -195,12 +237,6 @@ form {
     font-weight: 400;
     margin-top: 5px;
     margin-bottom: unset;
-}
-
-.book-button-icons {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
 }
 
 #completeBookList,
@@ -246,11 +282,7 @@ form {
 }
 
 .bookYearEditForm {
-    max-width: 30%;
-}
-
-#bookItemYear {
-    width: 10px;
+    max-width: 45%;
 }
 
 .edit-container input::placeholder {
@@ -260,6 +292,25 @@ form {
 
 /*  ICON  */
 
+.book-button-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.book-iscompleted-icon {
+    background: url('/assets/bx-book.svg');
+
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    cursor: pointer;
+    
+    border-radius: 5px;
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
+}
+
 .completed-icon {
     background: url('/assets/bx-check-double.svg');
 
@@ -268,37 +319,47 @@ form {
     background-size: contain;
     cursor: pointer;
     
-    border: none;
     border-radius: 5px;
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
+}
 
-    background-color: var(--secondCo);
+.book-uncompleted-icon {
+    background: url('/assets/bx-book-open.svg');
+
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    cursor: pointer;
+    
+    border-radius: 5px;
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
 }
 
 .undo-icon {
-    background: url('/assets/bx-book-reader.svg');
+    background: url('/assets/bx-x.svg');
 
     width: 30px;
     height: 30px;
     background-size: contain;
     cursor: pointer;
 
-    border: none;
     border-radius: 5px;
-    background-color: var(--secondCo);
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
 }
 
 .edit-icon {
-    background: url('/assets/bx-edit-alt.svg');
-    color: #ffffff;
-
+    background: url('/assets/bx-edit.svg');
     width: 30px;
     height: 30px;
     background-size: contain;
     cursor: pointer;
 
-    border: none;
     border-radius: 5px;
-    background-color: var(--secondCo);
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
 }
 
 .trash-icon {
@@ -309,9 +370,36 @@ form {
     background-size: contain;
     cursor: pointer;
 
-    border: none;
     border-radius: 5px;
-    background-color: var(--secondCo);
+    border: 4px solid var(--textInput);
+    background-color: var(--textInput);
+}
+
+.edit-icon:hover,
+.book-iscompleted-icon:hover,
+.book-uncompleted-icon:hover,
+.trash-icon:hover,
+.completed-icon:hover,
+.undo-icon:hover {
+    box-shadow: 0px 5px var(--secondCo);
+}
+
+.edit-icon:active,
+.book-iscompleted-icon:active,
+.book-uncompleted-icon:active,
+.trash-icon:active,
+.completed-icon:active,
+.undo-icon:active {
+    border: 2px solid var(--secondCo);
+}
+
+@media screen and (max-width: 870px) {
+    h3 {
+        font-size: 24px;
+    }
+    p {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 720px) {
@@ -319,6 +407,15 @@ form {
     h2 {
         font-size: 20px;
 
+    }
+
+    h3 {
+        font-size: 18px;
+        line-height: 1.3rem;
+    }
+
+    p {
+        font-size: 12px;
     }
 
     footer {
@@ -332,24 +429,32 @@ form {
     .book-button-icons {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        
-        border: 2px solid red;
+        gap: 0.8rem;
     }
 
+    .edit-icon,
+    .book-iscompleted-icon,
+    .book-uncompleted-icon,
     .completed-icon,
     .undo-icon,
-    .edit-icon,
     .trash-icon {
-        width: 25px;
-        height: 25px;
-        background-size: cover;
+        width: 30px;
+        height: 30px;
     }
 }
 
 @media screen and (max-width: 590px) {
     header h1 {
         font-size: 26px;
+    }
+    
+    h3 {
+        font-size: 20px;
+        line-height: 1.7rem;
+    }
+
+    p {
+        font-size: 12px;
     }
 
     section {
@@ -367,7 +472,7 @@ form {
         margin-bottom: 1rem;
     }
 
-    .searchBook {
+    .search-book {
         max-width: 100%;
     }
     

@@ -2,10 +2,21 @@ const RENDER_EVENT = 'render-book';
 
 document.addEventListener('DOMContentLoaded', function () {
     const submitForm = document.getElementById('bookForm');
+    const inputSearch = document.getElementById('searchBook');
 
     submitForm.addEventListener('submit', function (event) {
         event.preventDefault();
         addBook();
+    });
+
+    inputSearch.addEventListener('submit', function (event) {
+        event.preventDefault();
+        searchBooks();
+    });
+
+    inputSearch.addEventListener('keyup', function (event) {
+        event.preventDefault();
+        searchBooks();
     });
 
     const changeFooterValue = document.getElementById('footerTitle');
@@ -17,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         else {
             changeFooterValue.textContent = ('© 2024, Syahdan Nurmansyah');
-        }
+        };
     };
 
     handlerMediaQueryChange(mediaQuery);
@@ -35,7 +46,7 @@ document.addEventListener(RENDER_EVENT, function () {
 
     const completedBOOKList = document.getElementById('completeBookList');
     completedBOOKList.innerHTML = '';
-    
+   
     for (const bookItem of books) {
         const bookElement = makeBookElement(bookItem);
 
